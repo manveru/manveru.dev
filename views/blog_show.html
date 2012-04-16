@@ -2,7 +2,7 @@
   {{template "header"}}
   {{with .Post}}
     <article class="blogpost">
-      <h2 class="col_10"><a href="/show/{{date .Created}}/{{.Language}}/{{.Slug}}">{{.Title}}</a></h2>
+      <h2 class="col_10"><a href="/blog/show/{{date .Created}}/{{.Language}}/{{.Slug}}">{{.Title}}</a></h2>
       <div class="push_1 col_3 created_at">
         {{date .Created}}
       </div>
