@@ -1,0 +1,40 @@
+{{define "header"}}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>manveru &middot; {{.Title}}</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700|Droid+Sans|Droid+Sans+Mono|Droid+Serif|Love+Ya+Like+A+Sister'>
+    <link rel='stylesheet' href='/css/min.css'>
+    <link rel='alternate' type='application/atom+xml' title='manveru.name - Atom' href='http://manveru.name/blog/feed.atom'>
+  </head>
+  <body>
+    <header class="container">
+      <div class="titles row">
+        <h1 class="col_4 title"><a href="http://manveru.name/">manveru</a></h1>
+        <nav class="col_8 box nest">
+          <ul>
+            <li class="col_2"><a href="/">Blog</a></li>
+            <li class="col_2"><a href="/archive">Archive</a></li>
+            <li class="col_2"><a href="/contact">Contact</a></li>
+            <li class="col_2"><a rel="me" href="http://github.com/manveru">Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="content" class="container">
+      <div class="row">{{end}}
+{{define "footer"}}</div>
+    </section>
+
+    <footer class="container">
+      <div class="row">
+        <div id="copyright" class="col_12">
+          &copy; by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manveru.name" property="cc:attributionName" rel="cc:attributionURL">Michael Fellinger</a> as <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/">by-nc-sa.</a>
+        </div>
+        <div id="feeds" class="col_12">
+          <a href="http://manveru.name/blog/feed.atom"><img src="/img/atom.png" alt="RSS Icon"> Blog ATOM</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>{{end}}

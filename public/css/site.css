@@ -1,0 +1,94 @@
+body {
+  background: url(/img/blackmamba.png);
+  font-family: 'Droid Serif', serif;
+}
+
+header {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3em;
+}
+
+header h1 a { color: #fff; }
+header h1 a:visited { color: #fff; }
+
+h1, h2, h3 {
+  font-family: 'Cabin Sketch', serif;
+}
+
+nav ul {
+  list-style: none outside;
+  text-align: center;
+}
+
+nav li {
+  display: inline;
+}
+
+nav li a {
+  background: rgba(0,0,0,0.2);
+  border-radius: 5px;
+  display: block;
+  color: #fff;
+}
+
+nav li a:visited {
+  color: #fff;
+}
+
+nav li a:hover {
+  color: #fff;
+}
+
+#content {
+  background: rgba(255, 255, 255, 0.8);
+  margin: 2em auto;
+  border-radius: 5px;
+}
+
+#content .title { margin: 1em; }
+
+#content h1 {
+  font-size: 1.6em;
+  margin: 1em auto;
+  border-bottom: 1px dashed black;
+}
+
+.vcard {
+  background: rgba(255,255,255,0.5);
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px black;
+  padding: 0.5em;
+}
+
+.vcard li {
+  list-style: none;
+}
+
+footer {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+footer a { font-weight: bold; color: #fff; }
+footer a:visited { font-weight: bold; color: #fff; }
+
+#feeds img {
+  display: inline;
+}
+
+.highlight {
+  padding: 2em;
+  margin: 2em auto;
+  overflow: auto;
+  background: rgba(255,255,255,0.5);
+  box-shadow: 1px 1px 2px black;
+  font-size: 0.8em;
+  font-family: 'Droid Sans Mono', monospace;
+}
