@@ -190,10 +190,13 @@ func setupServer() {
 	http.Handle("/", http.FileServer(http.Dir("/tmp")))
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", MainIndex)
-	r.HandleFunc("/contact", MainContact)
-	r.HandleFunc("/archive", BlogArchive)
-	r.HandleFunc(`/blog/show/{id:\d{4}-\d{2}-\d{2}}/{language}/{slug}`, BlogShow)
+
+	r.NotFoundHandler = http.HandlerFunc(notFound)
+
+	r.HandleFunc("/", mainIndex)
+	r.HandleFunc("/contact", mainContact)
+	r.HandleFunc("/archive", blogArchive)
+	r.HandleFunc(`/blog/show/{id:\d{4}-\d{2}-\d{2}}/{language}/{slug}`, blogShow)
 	for _, name := range []string{"css", "js", "img", "static"} {
 		prefix, dirName := "/"+name+"/", *flagPublic+"/"+name
 		r.PathPrefix(prefix).Handler(http.StripPrefix(prefix, http.FileServer(http.Dir(dirName))))
@@ -220,19 +223,23 @@ type indexArgs struct {
 	Posts BlogPosts
 }
 
-func MainIndex(out http.ResponseWriter, req *http.Request) {
+func notFound(out http.ResponseWriter, req *http.Request) {
+	render(out, "404", indexArgs{Title: "Oops"})
+}
+
+func mainIndex(out http.ResponseWriter, req *http.Request) {
 	render(out, "index", indexArgs{Title: "Home", Posts: sortedPostsN(20)})
 }
 
-func MainContact(out http.ResponseWriter, req *http.Request) {
+func mainContact(out http.ResponseWriter, req *http.Request) {
 	render(out, "contact", rargs{"Title": "Contact"})
 }
 
-func BlogArchive(out http.ResponseWriter, req *http.Request) {
+func blogArchive(out http.ResponseWriter, req *http.Request) {
 	render(out, "blog/archive", rargs{"Title": "Archive", "Posts": sortedPostsN(100)})
 }
 
-func BlogShow(out http.ResponseWriter, req *http.Request) {
+func blogShow(out http.ResponseWriter, req *http.Request) {
 	post := postById(mux.Vars(req)["id"])
 	render(out, "blog/show", rargs{"Title": post.Title, "Post": post})
 }
