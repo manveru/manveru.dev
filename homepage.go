@@ -224,7 +224,7 @@ type indexArgs struct {
 }
 
 func notFound(out http.ResponseWriter, req *http.Request) {
-	render(out, "404", indexArgs{Title: "Oops"})
+	render(out, "404", rargs{"Title": "Oops"})
 }
 
 func mainIndex(out http.ResponseWriter, req *http.Request) {

@@ -1,11 +1,7 @@
-{{define "404"}}
-{{template "header"}}
+{{define "404"}}{{template "header" .}}
 <h2 class="col_12">Where did you go?</h2>
-
 <div class="not-found push_1 col_10 nest">
   <h2>Ooops</h2>
   <p>This page may never exist or has never existed</p>
 </div>
-
-{{template "footer"}}
-{{end}}
+{{template "footer" .}}{{end}}

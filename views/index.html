@@ -1,4 +1,4 @@
-{{define "index"}}{{template "header"}}
+{{define "index"}}{{template "header" .}}
 <h2 class="col_12">Welcome</h2>
 <article class="intro push_1 col_10 nest">
   <p>This is part of my online presence, I'm trying to collect tutorials, rants, and general thoughts here.</p>
@@ -36,5 +36,5 @@
     </section>
   </div>
 </article>
-{{template "footer"}}
+{{template "footer" .}}
 {{end}}

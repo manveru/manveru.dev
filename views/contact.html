@@ -1,5 +1,4 @@
-{{define "contact"}}
-{{template "header"}}
+{{define "contact"}}{{template "header" .}}
 <h2 class="col_12">Contact</h2>
 <div class="contact push_1 col_10 nest">
   <p class="col_6">
@@ -24,5 +23,4 @@
   This page is also an <a href="https://en.wikipedia.org/wiki/HCard">hCard</a>,
   so you can add me to your contacts easily.
 </p>
-{{template "footer"}}
-{{end}}
+{{template "footer" .}}{{end}}
