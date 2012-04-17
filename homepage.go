@@ -29,8 +29,19 @@ var (
 	views       *template.Template
 	posts       = map[time.Time]*BlogPost{}
 	sortedPosts = BlogPosts{}
-	funcMap     = template.FuncMap{"date": formatDate}
+	funcMap     = template.FuncMap{"date": formatDate, "xmlTime": xmlTime, "string": toString}
 )
+
+type BlogPost struct {
+	Slug string
+
+	Language, Title, Body string
+	Content               template.HTML
+
+	Created, Updated time.Time
+
+	Published bool
+}
 
 func main() {
 	// parse command line options
@@ -41,16 +52,22 @@ func main() {
 	setupServer()
 }
 
-func formatDate(d time.Time) string {
-	return d.Format("2006-01-02")
-}
+func formatDate(d time.Time) string   { return d.Format("2006-01-02") }
+func xmlTime(d time.Time) string      { return d.Format("2006-01-03T00:04:05+01:00") }
+func toString(t template.HTML) string { return string(t) }
 
 func mapBlogPosts() {
 	for {
 		var err error
+
 		views, err = template.New("views").Funcs(funcMap).ParseGlob("views/*.html")
+		if err == nil {
+			views, err = views.ParseGlob("views/*.xml")
+		}
 		if err != nil {
-			panic(err)
+			fmt.Println("error parsing templates:", err)
+			fmt.Println("Skipped update:", <-time.After(60*time.Second))
+			continue
 		}
 
 		filepath.Walk("posts", func(path string, info os.FileInfo, err error) error {
@@ -95,17 +112,6 @@ func postById(id string) *BlogPost {
 	}
 
 	return posts[postCreated]
-}
-
-type BlogPost struct {
-	Slug string
-
-	Language, Title, Body string
-	Content               template.HTML
-
-	Created, Updated time.Time
-
-	Published bool
 }
 
 func loadBlogPosts(path string, info os.FileInfo) (err error) {
@@ -197,6 +203,7 @@ func setupServer() {
 	r.HandleFunc("/contact", mainContact)
 	r.HandleFunc("/archive", blogArchive)
 	r.HandleFunc(`/blog/show/{id:\d{4}-\d{2}-\d{2}}/{language}/{slug}`, blogShow)
+	r.HandleFunc(`/blog/feed.atom`, blogAtom)
 	for _, name := range []string{"css", "js", "img", "static"} {
 		prefix, dirName := "/"+name+"/", *flagPublic+"/"+name
 		r.PathPrefix(prefix).Handler(http.StripPrefix(prefix, http.FileServer(http.Dir(dirName))))
@@ -236,10 +243,22 @@ func mainContact(out http.ResponseWriter, req *http.Request) {
 }
 
 func blogArchive(out http.ResponseWriter, req *http.Request) {
-	render(out, "blog/archive", rargs{"Title": "Archive", "Posts": sortedPostsN(100)})
+	render(out, "blog/archive", rargs{"Title": "Archive", "Posts": sortedPostsN(1000)})
 }
 
 func blogShow(out http.ResponseWriter, req *http.Request) {
 	post := postById(mux.Vars(req)["id"])
 	render(out, "blog/show", rargs{"Title": post.Title, "Post": post})
+}
+
+func blogAtom(out http.ResponseWriter, req *http.Request) {
+	out.Header().Set("Content-Type", "application/atom+xml")
+	posts := sortedPostsN(100)
+	render(out, "blog/atom", struct {
+		Updated time.Time
+		Posts   BlogPosts
+	}{
+		Updated: posts[0].Updated,
+		Posts:   posts,
+	})
 }
