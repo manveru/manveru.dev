@@ -193,8 +193,6 @@ func eachLine(path string, f func(line string, err error)) {
 }
 
 func setupServer() {
-	http.Handle("/", http.FileServer(http.Dir("/tmp")))
-
 	r := mux.NewRouter()
 
 	r.NotFoundHandler = http.HandlerFunc(notFound)
