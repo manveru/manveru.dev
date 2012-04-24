@@ -2,9 +2,22 @@
 <html lang="en">
   <head>
     <title>manveru &middot; {{.Title}}</title>
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700|Droid+Sans|Droid+Sans+Mono|Droid+Serif|Love+Ya+Like+A+Sister'>
-    <link rel='stylesheet' href='/css/min.css'>
+    <link rel='stylesheet' type="text/css" href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700|Droid+Sans|Droid+Sans+Mono|Droid+Serif|Love+Ya+Like+A+Sister'>
+    <link rel='stylesheet' type="text/css" href='/css/min.css'>
     <link rel='alternate' type='application/atom+xml' title='manveru.name - Atom' href='http://manveru.name/blog/feed.atom'>
+    <link rel="stylesheet" type="text/css" href="/google-code-prettify/prettify.css" />
+    <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+    <script>
+window.onload = function(){
+  var pres = document.getElementsByTagName("pre")
+  for (var i = 0; i < pres.length; ++i) {
+    var pre = pres.item(i)
+    console.log(i, pre)
+    pre.setAttribute("class", "prettyprint")
+  }
+  prettyPrint()
+}
+    </script>
   </head>
   <body>
     <header class="container">

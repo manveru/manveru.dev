@@ -202,7 +202,7 @@ func setupServer() {
 	r.HandleFunc("/archive", blogArchive)
 	r.HandleFunc(`/blog/show/{id:\d{4}-\d{2}-\d{2}}/{language}/{slug}`, blogShow)
 	r.HandleFunc(`/blog/feed.atom`, blogAtom)
-	for _, name := range []string{"css", "js", "img", "static"} {
+	for _, name := range []string{"css", "js", "img", "static", "google-code-prettify"} {
 		prefix, dirName := "/"+name+"/", *flagPublic+"/"+name
 		r.PathPrefix(prefix).Handler(http.StripPrefix(prefix, http.FileServer(http.Dir(dirName))))
 	}
