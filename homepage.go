@@ -57,7 +57,11 @@ func render(out http.ResponseWriter, name string, val interface{}) {
 type args map[string]interface{}
 
 func notFound(out http.ResponseWriter, req *http.Request) {
-	render(out, "404", args{"Title": "Oops"})
+	render(out, "404", args{
+		"Title":   "Oops",
+		"Subject": "[manveru.name] 404 @ " + req.RequestURI,
+		"Body":    fmt.Sprintf("%#v", req),
+	})
 }
 
 func mainIndex(out http.ResponseWriter, req *http.Request) {
