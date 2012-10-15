@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"github.com/russross/blackfriday" // markdown
 	"html/template"
 	"io"
 	"os"
@@ -13,6 +12,8 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/russross/blackfriday" // markdown
 )
 
 var (

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"code.google.com/p/gorilla/mux" // the 800 pound gorilla
 	"flag"
 	"fmt"
 	"net/http"
+
+	"code.google.com/p/gorilla/mux" // the 800 pound gorilla
 )
 
 var (
