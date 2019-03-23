@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/russross/blackfriday" // markdown
+	"github.com/russross/blackfriday/v2"
 )
 
 var (
@@ -114,7 +114,7 @@ func loadBlogPosts(path string, info os.FileInfo) (err error) {
 
 		if post != nil {
 			post.Body = strings.Join(lines, "\n")
-			post.Content = template.HTML(blackfriday.MarkdownCommon([]byte(post.Body)))
+			post.Content = template.HTML(blackfriday.Run([]byte(post.Body)))
 			tmpPosts = append(tmpPosts, post)
 			lines = lines[:0]
 		}
@@ -137,7 +137,7 @@ func loadBlogPosts(path string, info os.FileInfo) (err error) {
 
 	if post != nil {
 		post.Body = strings.Join(lines, "\n")
-		post.Content = template.HTML(blackfriday.MarkdownCommon([]byte(post.Body)))
+		post.Content = template.HTML(blackfriday.Run([]byte(post.Body)))
 		tmpPosts = append(tmpPosts, post)
 	}
 

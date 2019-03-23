@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"code.google.com/p/gorilla/mux" // the 800 pound gorilla
+	"github.com/gorilla/mux" // the 800 pound gorilla
 )
 
 var (
