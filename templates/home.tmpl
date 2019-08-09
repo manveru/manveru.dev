@@ -1,0 +1,49 @@
+<!--
+     title: Welcome
+     route: /index.html
+     requires:
+      - latestPosts
+-->
+<h2 class="col_12">Welcome</h2>
+
+{{ .needs }}
+
+<article class="intro push_1 col_10 nest">
+  <p>My name is Michael Fellinger, also known as manveru. I'm trying to collect
+  tutorials, rants, and general thoughts here.</p>
+  <p>You can find out more about me by looking at my:</p>
+  <div class="overview">
+    <section class="col_4">
+      <h4>Some Projects</h4>
+      <ul>
+        <li><a href="https://gitlab.com/manveru/mixnix">MixNix for Elixir &amp; Nix</a></li>
+        <li><a href="http://github.com/manveru/bundix">Bundix for Ruby &amp; Nix</a></li>
+        <li><a href="http://ramaze.net">Ramaze Web Framework</a></li>
+        <li><a href="http://github.com/manveru/innate">Innate Web Framework</a></li>
+        <li><a href="http://github.com/manveru/ver">VER Editor</a></li>
+        <li><a href="http://github.com/manveru/makura">CouchDB Abstraction layer</a></li>
+      </ul>
+    </section>
+
+    <section class="col_4">
+      <h4>Further presence</h4>
+      <ul>
+        <li><a href="http://github.com/manveru">manveru @ Github</a></li>
+        <li><a href="http://www.linkedin.com/in/mfellinger">Linkedin</a></li>
+        <li><a href="https://www.xing.com/profile/Michael_Fellinger2">XING</a></li>
+        <li><a href="http://twitter.com/manveru">@manveru</a></li>
+      </ul>
+    </section>
+
+    <section class="col_4">
+      <h4>Recent Articles</h4>
+      <ul>
+        {{range .latestPosts}}
+          <li>
+            <a href="{{ .url }}">{{.meta.title}}</a>
+          </li>
+        {{end}}
+      </ul>
+    </section>
+  </div>
+</article>

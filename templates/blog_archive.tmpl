@@ -1,0 +1,13 @@
+<!--
+     title: Archive
+     route: /archive.html
+-->
+<h2 class="col_5">Blog Archive</h2>
+{{range .posts}}
+  <ul class="blogposts push_1 col_10 nest">
+    <li>
+      <a href="{{ .url }}">{{.meta.title}}</a>
+      ({{.meta.language | default "en"}}) {{.meta.date}}
+    </li>
+  </ul>
+{{end}}

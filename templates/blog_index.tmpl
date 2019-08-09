@@ -1,0 +1,7 @@
+<!--
+     title: Blog
+     route: /blog.html
+-->
+{{range .posts}}
+  {{template "blog_show.tmpl" .}}
+{{end}}
