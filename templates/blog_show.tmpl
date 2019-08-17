@@ -1,12 +1,13 @@
 <!--
      routeMaps: posts
+     css: main.css
 -->
 <article class="blogpost">
-  <h2 class="col_10"><a href="{{.url}}">{{.meta.title}}</a></h2>
-  <div class="push_1 col_3 created_at">
+  <h2><a href="{{.url}}">{{.meta.title}}</a></h2>
+  <div class="created_at">
     {{.meta.date}}
   </div>
-  <div class="push_1 col_10">
+  <div>
     {{.body}}
   </div>
 </article>

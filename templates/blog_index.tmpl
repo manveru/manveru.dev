@@ -1,6 +1,8 @@
 <!--
-     title: Blog
-     route: /blog.html
+title: Blog
+route: /blog/
+css: main.css
+requires: posts
 -->
 {{range .posts}}
   {{template "blog_show.tmpl" .}}

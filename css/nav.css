@@ -1,0 +1,123 @@
+@custom-media --nav-small (width < 1025px);
+
+.nav-container {
+  width: 100%;
+  position: absolute;
+  @media (--nav-small) {
+    position: fixed;
+  }
+  background: rgba(0, 0, 0, 0.8);
+
+  & nav {
+    max-width: 1720;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 5rem 0;
+
+    @media (--nav-small) {
+      & .burger-menu {
+        display: inline-block;
+      }
+
+      & .left-menu {
+        display: grid;
+        grid-auto-flow: row;
+        opacity: 0;
+        transform: translate(0, -200%);
+        transition: .3s all ease-in-out;
+        grid-column: 1 / span 2;
+      }
+
+      & #nav-toggle:checked ~ .left-menu {
+        display: grid;
+        transform: translate(0, 0);
+        opacity: 1;
+        grid-row: 2;
+        justify-content: start;
+        margin: 12rem 0 0 0;
+        padding-top: 5rem;
+        grid-column: 1 / span 2;
+        background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 40%, rgba(0,0,0,0) 100%);
+        transition: .3s all ease-in-out;
+        z-index: 20;
+      }
+
+      & #nav-toggle:checked ~ .burger-menu {
+        z-index: 30;
+      }
+
+      & #nav-toggle:checked ~ .logo {
+        z-index: 30;
+      }
+    }
+
+    & #nav-toggle {
+      display: none;
+    }
+
+    & .burger-menu {
+      display: none;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      padding-left: 2.5rem;
+      font-size: 2rem;
+      height: 100%;
+      line-height: 5rem;
+      color: white;
+      text-shadow: 0 0 2px black;
+    }
+
+    & .left-menu {
+      grid-column: 1;
+      align-self: center;
+      display: grid;
+      grid-auto-flow: column;
+    }
+
+    & .logo {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+      justify-self: center;
+
+      & h1 {
+        font-size: 2rem;
+        margin: 0;
+        text-shadow: 0 0 2px black;
+      }
+    }
+
+    & a {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: .3s all ease-in-out;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    & .left-menu a {
+      padding: 1em;
+      margin: 0.2em;
+      font-size: 14px;
+      font-weight: 500;
+      text-shadow: 0 0 2px black;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      text-align: center;
+
+      &:hover {
+        border: 1px solid white;
+      }
+
+      &.active {
+        border: 1px solid white;
+        box-shadow: 0 0 2px black;
+      }
+    }
+  }
+}

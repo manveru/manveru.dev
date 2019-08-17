@@ -1,49 +1,35 @@
 <!--
      title: 404 - Not found
      route: /404.html
+     css: main.css
 -->
-<h2 class="col_12">Where did you go?</h2>
-<div class="not-found push_1 col_10 nest">
-  <div class="col_12">
-    <div class="col_6">
-      <h2>Ooops</h2>
-      <p>
-        This page may never exist or has never existed.<br>
-      </p>
-      <p>
-        Some said that it's the fault of the site creator, but they've been
-        brought to face their deserved justice.
-      </p>
-    </div>
-    <div class="col_6">
-      <img width="100%" src="/img/pepperbird.svg">
-    </div>
-  </div>
-  <p>
-    Now take a deep breath, and call the <a href="mailto:m.fellinger@gmail.com">404 busters</a>!<br>
-  </p>
-  <p>
-    For your convenience, here's a form that helps you do that, if you care
-    enough to let me help you.
-  </p>
-</div>
-<div class="push_1 col_10 nest">
-<form class="col_12" action="mailto:m.fellinger@gmail.com" method="post">
+<h2>Where did you go?</h2>
+
+<p>
+  This page may never exist or has never existed.<br>
+</p>
+
+<p>
+  Some said that it's the fault of the site creator, but they've been
+  brought to face their deserved justice.
+</p>
+
+<img width="100%" src="/img/pepperbird.svg">
+
+<p>
+  Now take a deep breath, and call the <a href="mailto:m.fellinger@gmail.com">404 busters</a>!<br>
+</p>
+
+<p>
+  For your convenience, here's a form that helps you do that, if you care
+  enough to let me help you.
+</p>
+
+<form action="mailto:m.fellinger@gmail.com" method="post">
   <fieldset>
     <legend>On noes, I'm a 404 victim:</legend>
 
-    <input id="form-subject" name="subject" type="hidden" value="{{.Subject}}">
-
-    <label for="form-body">Anything I missed, Watson?</label>
-    <textarea id="form-body" name="body" cols="80" rows="20">
-Please share your thoughts here
-and then choose Send Feedback.
-
-================ The data below helps me fix this debacle ===============
-
-{{ .body }}
-  </textarea>
-  <br>
+    <label for="form-body">Message</label>
+    <textarea id="form-body" name="body" cols="80" rows="20" placeholder="Please share your thoughts here and then send it my way."></textarea>
   <input type="submit" value="Send Feedback">
 </form>
-</div>

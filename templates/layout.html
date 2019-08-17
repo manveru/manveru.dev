@@ -1,0 +1,89 @@
+''
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta property="og:title" content="manveru - ${ title }" />
+  <title>manveru &middot; ${ title }</title>
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Droid+Sans|Droid+Sans+Mono|Droid+Serif|Love+Ya+Like+A+Sister" />
+  <link rel="stylesheet" type="text/css" href="/css/sons-of-obsidian.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/themes/prism-okaidia.css" integrity="sha256-z3EcdeeMUihcuIaH67JlOEZOS7j//GrK89ZgXrWR/Fs=" crossorigin="anonymous" />
+  ${ ../css/main.css }
+
+  <link rel="alternate" type="application/atom+xml" title="manveru.dev - Atom" href="https://manveru.dev/blog/feed.atom" />
+
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/images/favicons/favicon32.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/favicons/favicon144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/favicons/favicon114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/favicons/favicon72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/favicons/favicon57.png" />
+</head>
+
+<body>
+  <canvas class="background"></canvas>
+
+  <header>
+    <div class="nav-container">
+      <nav>
+        <input type="checkbox" id="nav-toggle" />
+        <label for="nav-toggle" class="burger-menu">☰</label>
+
+        <div class="left-menu">
+          <a class="${ activeClass ''/'' }" href="/">Home</a>
+          <a class="${ activeClass ''/blog/'' }" href="/blog">Blog</a>
+          <a class="${ activeClass ''/archive/'' }" href="/archive">Archive</a>
+          <a class="${ activeClass ''/contact/'' }" href="/contact">Contact</a>
+        </div>
+
+        <a href="/" class="logo">
+          <h1>manveru.dev</h1>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main">
+    ${ content }
+  </main>
+
+  <footer>
+    <div id="copyright">
+      &copy; by
+      <a xmlns:cc="https://creativecommons.org/ns#" href="https://manveru.dev" property="cc:attributionName" rel="cc:attributionURL">Michael Fellinger</a>
+      as
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/de/">by-nc-sa.</a>
+    </div>
+
+    <div id="feeds">
+      <a href="/blog/feed.atom"><img src="/img/atom.png" alt="RSS Icon" /> Blog ATOM</a>
+    </div>
+  </footer>
+
+  ${ liveJS }
+  <script src="/js/particles.min.js"></script>
+  <script>
+    window.onload = function() {
+      Particles.init({
+        selector: ".background",
+        speed: 0.05,
+        color: ["#00fff2", "#00ff62"],
+        connectParticles: true,
+        responsive: [{
+          breakpoint: 800,
+          options: {
+            maxParticles: 0
+          }
+        }]
+      });
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/prism.js" integrity="sha256-hFhFKoZ+mZTEMFJc8FQyuDDHVB1x9v+rJRu3DelyOHQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
+</body>
+
+</html>
+''
