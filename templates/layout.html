@@ -1,4 +1,3 @@
-''
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Droid+Sans|Droid+Sans+Mono|Droid+Serif|Love+Ya+Like+A+Sister" />
   <link rel="stylesheet" type="text/css" href="/css/sons-of-obsidian.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/themes/prism-okaidia.css" integrity="sha256-z3EcdeeMUihcuIaH67JlOEZOS7j//GrK89ZgXrWR/Fs=" crossorigin="anonymous" />
-  ${ ../css/main.css }
+  ${ css "main.css" }
 
   <link rel="alternate" type="application/atom+xml" title="manveru.dev - Atom" href="https://manveru.dev/blog/feed.atom" />
 
@@ -32,10 +31,10 @@
         <label for="nav-toggle" class="burger-menu">☰</label>
 
         <div class="left-menu">
-          <a class="${ activeClass ''/'' }" href="/">Home</a>
-          <a class="${ activeClass ''/blog/'' }" href="/blog">Blog</a>
-          <a class="${ activeClass ''/archive/'' }" href="/archive">Archive</a>
-          <a class="${ activeClass ''/contact/'' }" href="/contact">Contact</a>
+          <a class="${ activeClass route ''/index'' }" href="/">Home</a>
+          <a class="${ activeClass route ''/blog'' }" href="/blog">Blog</a>
+          <a class="${ activeClass route ''/archive'' }" href="/archive">Archive</a>
+          <a class="${ activeClass route ''/contact'' }" href="/contact">Contact</a>
         </div>
 
         <a href="/" class="logo">
@@ -86,4 +85,3 @@
 </body>
 
 </html>
-''
