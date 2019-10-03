@@ -1,16 +1,8 @@
 let
-  # euphenixSource = import ~/github/manveru/euphenix { };
-  euphenixSource = (import (fetchTarball {
-    url =
-      "https://github.com/manveru/euphenix/archive/34252d3ec764e91d8578728573fa8350ce5127fe.tar.gz";
-  }) { });
+  pkgs = import ./nix {};
 
-  euphenix = euphenixSource.extend (self: super: {
-    parseMarkdown =
-      super.parseMarkdown.override { flags = { prismjs = true; }; };
-  });
-
-  inherit (euphenix.lib) take optionalString nameValuePair hasPrefix;
+  inherit (pkgs) euphenix;
+  inherit (euphenix.lib) take optionalString nameValuePair hasPrefix elemAt length;
   inherit (euphenix) build sortByRecent loadPosts pp mkPostCSS cssTag;
 
   withLayout = body: [ ./templates/layout.html body ];
@@ -34,6 +26,13 @@ let
     "/404/index.html" = route ./templates/404.html "Not Found";
     "/archive/index.html" = route ./templates/archive.html "Blog Archive";
     "/blog/index.html" = route ./templates/blog.html "Blog";
+    "/blog/feed.atom" = {
+      template = [ ./templates/atom.xml ];
+      variables = variables // {
+        updated = (elemAt variables.posts (length variables.posts - 1)).meta.date;
+        author = "Michael 'manveru' Fellinger";
+      };
+    };
   };
 
   blogRoutes = __listToAttrs (map (post:
@@ -42,4 +41,4 @@ let
       variables = variables // post // { title = post.meta.title; };
     }) variables.posts);
 
-in euphenix.build ./. { routes = pageRoutes // blogRoutes; }
+in euphenix.build { src = ./.; routes = pageRoutes // blogRoutes; }
