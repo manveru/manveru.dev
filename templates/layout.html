@@ -22,7 +22,8 @@
 </head>
 
 <body>
-  <canvas class="background"></canvas>
+  <!-- <canvas class="background"></canvas> -->
+  <canvas id="spiders" class="hidden-xs background"></canvas>
 
   <header>
     <div class="nav-container">
@@ -62,23 +63,8 @@
   </footer>
 
   ${ liveJS }
-  <script src="/js/particles.min.js"></script>
-  <script>
-    window.onload = function() {
-      Particles.init({
-        selector: ".background",
-        speed: 0.05,
-        color: ["#00fff2", "#00ff62"],
-        connectParticles: true,
-        responsive: [{
-          breakpoint: 800,
-          options: {
-            maxParticles: 0
-          }
-        }]
-      });
-    };
-  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <script src="/js/nodes.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/prism.js" integrity="sha256-hFhFKoZ+mZTEMFJc8FQyuDDHVB1x9v+rJRu3DelyOHQ=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>

@@ -4,9 +4,6 @@ pkgs.mkShell {
     cacert
     watchexec
     niv
+    euphenix.euphenix
   ];
-
-  shellHook = ''
-    unset preHook # fix for lorri
-  '';
 }

@@ -1,8 +1,9 @@
 let
-  pkgs = import ./nix {};
+  pkgs = import ./nix { };
 
   inherit (pkgs) euphenix;
-  inherit (euphenix.lib) take optionalString nameValuePair hasPrefix elemAt length;
+  inherit (euphenix.lib)
+    take optionalString nameValuePair hasPrefix elemAt length;
   inherit (euphenix) build sortByRecent loadPosts pp mkPostCSS cssTag;
 
   withLayout = body: [ ./templates/layout.html body ];
@@ -11,7 +12,8 @@ let
       optionalString (hasPrefix prefix route) "active";
     posts = sortByRecent (loadPosts "/blog/" ./blog);
     latestPosts = take 10 posts;
-    liveJS = ''<script src="/js/live.js"></script>'';
+    liveJS = optionalString ((__getEnv "LIVEJS") != "")
+      ''<script src="/js/live.js"></script>'';
     css = cssTag (mkPostCSS ./css);
   };
 
@@ -29,7 +31,8 @@ let
     "/blog/feed.atom" = {
       template = [ ./templates/atom.xml ];
       variables = variables // {
-        updated = (elemAt variables.posts (length variables.posts - 1)).meta.date;
+        updated =
+          (elemAt variables.posts (length variables.posts - 1)).meta.date;
         author = "Michael 'manveru' Fellinger";
       };
     };
@@ -41,4 +44,7 @@ let
       variables = variables // post // { title = post.meta.title; };
     }) variables.posts);
 
-in euphenix.build { src = ./.; routes = pageRoutes // blogRoutes; }
+in euphenix.build {
+  src = ./.;
+  routes = pageRoutes // blogRoutes;
+}
