@@ -1,7 +1,5 @@
+{ euphenix }:
 let
-  pkgs = import ./nix { };
-
-  inherit (pkgs) euphenix;
   inherit (euphenix.lib)
     take optionalString nameValuePair hasPrefix elemAt length;
   inherit (euphenix) build sortByRecent loadPosts pp mkPostCSS cssTag;

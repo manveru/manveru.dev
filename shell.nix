@@ -1,9 +1,8 @@
-with import ./nix {};
+{ pkgs }:
 pkgs.mkShell {
-  buildInputs = [
+  buildInputs = with pkgs; [
     cacert
     watchexec
-    niv
     euphenix.euphenix
   ];
 }
